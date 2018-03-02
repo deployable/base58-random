@@ -1,6 +1,6 @@
 {
   "name": "base58-random",
-  "version": "0.1.0-0",
+  "version": "0.1.0-1",
   "description": "Fast base62 random strings",
   "main": "index.js",
   "scripts": {

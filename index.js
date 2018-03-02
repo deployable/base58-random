@@ -7,45 +7,45 @@
   var str = ''
   var strIdx = 0
   var i
-  var chars = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  var chars = 'abcdefghijkmnopqrstuvwxyz23456789ABCDEFGHIJKLMNPQRSTUVWXYZ'
 
   // Reduce calls to `crypto` by increasing this number (>=16)
   // Uses a tiny bit more memory to store the random bytes (try 16384)
   var BUFFER_SIZE = 8192
 
   // Test for uuid
-  base62.test = isbase62
+  base58.test = isbase58
   
   // Attach methods for tests to use
-  base62.generateBase62Math = generateBase62Math
-  base62.generateBase62Node = generateBase62Node
-  base62.generateBase62Browser = generateBase62Browser
-  base62.initMath = initMath
-  base62.initNode = initNode
-  base62.initBrowser = initBrowser
+  base58.generateBase58Math = generateBase58Math
+  base58.generateBase58Node = generateBase58Node
+  base58.generateBase58Browser = generateBase58Browser
+  base58.initMath = initMath
+  base58.initNode = initNode
+  base58.initBrowser = initBrowser
 
   // Node & Browser support
   if ((typeof module !== 'undefined') && (typeof require === 'function')) {
     var crypto = require('crypto')
-    module.exports = base62
+    module.exports = base58
   } else if (typeof window !== 'undefined') {
-    window.base62 = base62
+    window.base58 = base62
   }
 
   // Backup method
   function getRandomChar() {
-    return chars[Math.floor(Math.random() * (62 - 0)) + 0]
+    return chars[Math.floor(Math.random() * (58 - 0)) + 0]
   }
 
-  // base62.test
-  function isbase62(str) {
+  // base58.test
+  function isbase58(str) {
     if (typeof str === 'string') {
-      return /^[0-9a-zA-Z]+$/.test(str)
+      return /^[2-9a-km-zA-NP-Z]+$/.test(str)
     }
     return false
   }
 
-  function generateBase62Math(){
+  function generateBase58Math(){
     for (i = 0; i < BUFFER_SIZE; i++) {
       buf[i] = getRandomChar()
     }
@@ -53,7 +53,7 @@
     return str = buf.join('')
   }
 
-  function generateBase62Node(){
+  function generateBase58Node(){
     //console.error('generating str',strIdx)
     strIdx = 0
     return str = crypto.randomBytes(BUFFER_SIZE)
@@ -62,34 +62,34 @@
   }
  
   // https://github.com/beatgammit/base64-js
-  function generateBase62Browser(){
+  function generateBase58Browser(){
     buf = crypto.getRandomValues(buf)
     var tmp = Array(BUFFER_SIZE)
     for ( i=0; i<BUFFER_SIZE; i++){
       // wastes some bits, some bit pushing should save the extra 4
-      tmp.push(chars[buf[i] % 62])
+      tmp.push(chars[buf[i] % 58])
     }
     strIdx = 0
     return str = tmp.join('')
   }
 
   // Use best RNG as possible
-  var generateBase62
+  var generateBase58
   strIdx = BUFFER_SIZE
 
   function initMath(){
     str = ''
     buf = new Array(BUFFER_SIZE)
-    generateBase62 = generateBase62Math
+    generateBase58 = generateBase58Math
   }
   function initBrowser(){
     str = ''
     buf = new Uint8Array(BUFFER_SIZE)
-    generateBase62 = generateBase62Browser 
+    generateBase58 = generateBase58Browser 
   }
   function initNode(){
     str = ''
-    generateBase62 = generateBase62Node
+    generateBase58 = generateBase58Node
   }
 
   if (typeof crypto === 'undefined') {
@@ -107,9 +107,9 @@
 
 
   // String UUIDv4 (Random)
-  function base62(length) {
-    if ( !length || typeof length !== 'number') throw new Error('base62 length must be a number "'+length+'"')
-    if ( str.length < (strIdx+length) ) generateBase62()
+  function base58(length) {
+    if ( !length || typeof length !== 'number') throw new Error('base58 length must be a number "'+length+'"')
+    if ( str.length < (strIdx+length) ) generateBase58()
     return str.slice(strIdx, (strIdx+=length))
   }
 

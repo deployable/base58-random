@@ -1,10 +1,10 @@
 {
-  "name": "base62-random",
-  "version": "0.3.5",
+  "name": "base58-random",
+  "version": "0.1.0-0",
   "description": "Fast base62 random strings",
   "main": "index.js",
   "scripts": {
-    "minify": "uglifyjs index.js -mco base62-random.min.js",
+    "minify": "uglifyjs index.js -mco base58-random.min.js",
     "test": "mocha test/unit* test/perf*",
     "test:minify": "set -e; yarn run minify; mocha test/minify*",
     "test:coverage": "istanbul cover _mocha test/unit* && istanbul check-coverage",
@@ -24,9 +24,9 @@
   "author": "Matt Hoyle",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/deployable/base62-random/issues"
+    "url": "https://github.com/deployable/base58-random/issues"
   },
-  "homepage": "https://github.com/deployable/base62-random#readme",
+  "homepage": "https://github.com/deployable/base58-random#readme",
   "devDependencies": {
     "chai": "^4.1.2",
     "eslint": "^4.6.1",

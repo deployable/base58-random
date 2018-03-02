@@ -1,6 +1,6 @@
-# base62-random
+# base58-random
 
-Generate random [base62 strings](https://helloacm.com/base62/) quickly with better 
+Generate random [base58 strings]() quickly with better 
 [statistical dispersion](https://en.wikipedia.org/wiki/Statistical_dispersion)
 than `Math.random()` unless Math.random is all that's available.
 
@@ -8,33 +8,34 @@ Largely based on [`uuid-random`](https://github.com/jchook/uuid-random)
 
 ## Install
 
-    yarn add base62-random
-    npm install base62-random
+    yarn add base58-random
+    npm install base58-random
 
 ## Example Usage
 
 ### Node
 
 ```javascript
-var base62 = require('base62-random');
-base62(12); // 'KsykHbcCzUSL'
+var base58 = require('base58-random');
+base58(12); // 'KsykHbcCzUSL'
 ```
 
 ### Browser
 
 ```html
-<script src="https://cdn.rawgit.com/deployable/base62-random/v0.3.5/base62-random.min.js"></script>
+<script src="https://cdn.rawgit.com/deployable/base58-random/v0.1.0/base58-random.min.js"></script>
 <script>
-  base62(13); // 'BAhl1V1BfUmo3'
+  base58(13); // 'BAho2V4BfUmo3'
 </script>
 ```
 
 
-### Is base62 string?
+### Is base58 string?
 
 ```javascript
-base62.test('5HXx8Eznu0'); // true
-base62.test('P-f6cA4e'); // false
+base58.test('4rhdLsp32qn'); // true
+base58.test('5HXx8Eznu0'); // false
+base58.test('P-f6cA4e'); // false
 ```
 
 ## License
@@ -43,7 +44,8 @@ MIT
 
 ## Links
 
+- Also see [deployable/base62-random](https://github.com/deployable/base62-random)
 - Based on [jchook/uuid-random](https://github.com/jchook/uuid-random)
-- github [deployable/base62-random](https://github.com/deployable/base62-random)
-- npm [base62-random](https://www.npmjs.com/package/base62-random)
+- github [deployable/base58-random](https://github.com/deployable/base58-random)
+- npm [base62-random](https://www.npmjs.com/package/base58-random)
 

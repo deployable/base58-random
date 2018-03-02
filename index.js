@@ -29,7 +29,7 @@
     var crypto = require('crypto')
     module.exports = base58
   } else if (typeof window !== 'undefined') {
-    window.base58 = base62
+    window.base58 = base58
   }
 
   // Backup method
